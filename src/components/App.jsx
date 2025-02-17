@@ -9,29 +9,37 @@ import RestrictedRoute from "./RestrictedRoute/RestrictedRoute.jsx";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import { selectIsRefreshing } from "../redux/auth/selectors.js";
+import { refreshUser } from "../redux/auth/operations.js";
 // Ліниве завантаження компонентів
-const WelcomePage = lazy(() => import("../pages/WelcomePage/WelcomePage.jsx"));
-const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
+const MainPage = lazy(() => import("../pages/MainPage/MainPage.jsx"));
+// const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
 const SigninPage = lazy(() => import("../pages/SigninPage/SigninPage.jsx"));
 const SignupPage = lazy(() => import("../pages/SignupPage/SignupPage.jsx"));
+const BrowsePage = lazy(() => import("../pages/BrowsePage/BrowsePage.jsx"));
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          {/* <Route index element={<WelcomePage />} /> */}
-
-          {/* Обмежений доступ для неавторизованих користувачів */}
-          <Route
-            path="/"
-            element={<RestrictedRoute component={<WelcomePage />} />}
-          />
+          <Route path="/" element={<PrivateRoute component={<MainPage />} />} />
           {/* Сторінка для авторизованих користувачів */}
-          <Route
+          {/* <Route
             path="home"
             element={<PrivateRoute component={<HomePage />} />}
-          />
+          /> */}
           {/* Сторінка для входу */}
           <Route
             path="signin"
@@ -42,6 +50,10 @@ function App() {
             path="signup"
             element={<RestrictedRoute component={<SignupPage />} />}
           />
+          {/* <Route
+            path="browse"
+            element={<PrivateRoute component={<BrowsePage />} />}
+          /> */}
         </Routes>
       </Suspense>
     </Layout>

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 import clsx from "clsx";
-// import css from "./UserMenu.module.css";
+import css from "./UserMenu.module.css";
 
 const UserMenu = () => {
   //   const buildCssClasses = ({ isActive }) =>
@@ -17,21 +17,26 @@ const UserMenu = () => {
   const onLogout = () => {
     dispatch(logout());
     const action = {
-      type: "contacts/clearContacts",
+      type: "",
     };
     dispatch(action);
   };
 
   return (
-    <div>
-      {isLoggedIn && <div>Hello, {userData.name}</div>}
-      <NavLink
+    <div className={clsx(css.wrapper)}>
+      {isLoggedIn && (
+        <div className={clsx(css.greating)}>Hello, {userData?.username}</div>
+      )}
+      {/* <NavLink
         //   className={buildCssClasses}
         to="/home"
       >
         Home
-      </NavLink>
-      <button onClick={onLogout} type="button">
+      </NavLink> */}
+      <button className={clsx(css.button)} type="button">
+        Settings
+      </button>
+      <button className={clsx(css.button)} onClick={onLogout} type="button">
         Logout
       </button>
     </div>
