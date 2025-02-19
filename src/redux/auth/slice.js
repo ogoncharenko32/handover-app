@@ -3,11 +3,11 @@ import { login, logout, refreshUser, register } from "./operations";
 
 const INITIAL_STATE = {
   user: {
-    name: null,
+    username: null,
     email: null,
   },
   token: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isRefreshing: false,
 
   isLoading: false,
@@ -25,7 +25,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.accessToken;
         state.isLoading = false;
         state.isLoggedIn = true;
       })
@@ -39,8 +39,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
         state.isLoading = false;
         state.isLoggedIn = true;
       })
@@ -54,7 +54,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.isRefreshing = false;
         state.isLoggedIn = true;
       })
