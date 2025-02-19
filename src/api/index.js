@@ -34,3 +34,13 @@ export const apiLogoutUser = async () => {
   const { data } = await handoverInstance.post("/auth/logout");
   return data;
 };
+
+export const apiGetTickets = async () => {
+  const { data } = await handoverInstance.get("/browse");
+  return data;
+};
+
+export const apiAddTicket = async (ticket) => {
+  const { data } = await handoverInstance.post("/browse", ticket);
+  return data;
+};
