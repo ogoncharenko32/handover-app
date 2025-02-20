@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import clsx from "clsx";
 import css from "./AuthForm.module.css";
 
-const AuthForm = ({ mode = "login", onSubmit, isLoading }) => {
+const AuthForm = ({ mode = "login", onSubmit, isLoading, groups }) => {
   const isRegister = mode === "register";
 
   const validationSchema = Yup.object({
@@ -20,13 +20,16 @@ const AuthForm = ({ mode = "login", onSubmit, isLoading }) => {
           .oneOf([Yup.ref("password")], "Passwords must match")
           .required("Required")
       : Yup.string(),
+    groupId: isRegister
+      ? Yup.string().required("Select a group")
+      : Yup.string(),
   });
 
   return (
     <Formik
       initialValues={
         isRegister
-          ? { username: "", email: "", password: "" }
+          ? { username: "", email: "", password: "", groupId: "" }
           : { email: "", password: "" }
       }
       validationSchema={validationSchema}
@@ -101,6 +104,26 @@ const AuthForm = ({ mode = "login", onSubmit, isLoading }) => {
               />
               <ErrorMessage
                 name="confirmPassword"
+                component="div"
+                className={css.error}
+              />
+            </div>
+          )}
+          {isRegister && (
+            <div className={css.inputGroup}>
+              <label className={css.label} htmlFor="groupId">
+                Select a group
+              </label>
+              <Field className={css.input} as="select" name="groupId">
+                <option value="" label="Select a group" />
+                {groups.map((group) => (
+                  <option key={group._id} value={group._id}>
+                    {group.groupName}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage
+                name="groupId"
                 component="div"
                 className={css.error}
               />

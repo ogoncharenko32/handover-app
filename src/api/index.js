@@ -35,12 +35,32 @@ export const apiLogoutUser = async () => {
   return data;
 };
 
-export const apiGetTickets = async () => {
-  const { data } = await handoverInstance.get("/browse");
+export const apiGetTickets = async (shiftId) => {
+  console.log(shiftId);
+  const { data } = await handoverInstance.get("/browse", {
+    params: {
+      shiftId,
+    },
+  });
   return data;
 };
 
 export const apiAddTicket = async (ticket) => {
   const { data } = await handoverInstance.post("/browse", ticket);
+  return data;
+};
+
+export const apiGetGroups = async () => {
+  const { data } = await handoverInstance.get("/auth/get-groups");
+  return data;
+};
+
+export const apiGetShifts = async () => {
+  const { data } = await handoverInstance.get("/browse/get-shifts");
+  return data;
+};
+
+export const apiCreateShift = async (date) => {
+  const { data } = await handoverInstance.post("/browse/create-shift", date);
   return data;
 };
