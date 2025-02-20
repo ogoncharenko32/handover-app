@@ -21,10 +21,16 @@ const authConfig = {
   whitelist: ["token"],
 };
 
+const shiftsConfig = {
+  key: "shifts",
+  storage,
+  whitelist: ["selectedShiftId"],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authConfig, authReducer),
-    tickets: ticketsReducer,
+    tickets: persistReducer(shiftsConfig, ticketsReducer),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

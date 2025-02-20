@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTicket, fetchTickets } from "./operations.js";
+import {
+  addTicket,
+  createShift,
+  fetchShifts,
+  fetchTickets,
+} from "./operations.js";
 
 const INITIAL_STATE = {
   tickets: {
@@ -7,6 +12,12 @@ const INITIAL_STATE = {
     loading: false,
     error: null,
   },
+  shifts: {
+    items: [],
+    loading: false,
+    error: null,
+  },
+  selectedShiftId: null,
 };
 
 export const ticketsSlice = createSlice({
@@ -39,13 +50,55 @@ export const ticketsSlice = createSlice({
       .addCase(addTicket.rejected, (state, action) => {
         state.tickets.loading = false;
         state.tickets.error = action.payload;
+      })
+      .addCase(fetchShifts.pending, (state) => {
+        state.shifts.loading = true;
+        state.shifts.error = null;
+      })
+      .addCase(fetchShifts.fulfilled, (state, action) => {
+        state.shifts.loading = false;
+        state.shifts.error = null;
+        state.shifts.items = action.payload.data;
+      })
+      .addCase(fetchShifts.rejected, (state, action) => {
+        state.shifts.loading = false;
+        state.shifts.error = action.payload;
+      })
+      .addCase(createShift.pending, (state) => {
+        state.shifts.loading = true;
+        state.shifts.error = null;
+      })
+      .addCase(createShift.fulfilled, (state, action) => {
+        state.shifts.loading = false;
+        state.shifts.error = null;
+        state.shifts.items.push(action.payload.data);
+      })
+      .addCase(createShift.rejected, (state, action) => {
+        state.shifts.loading = false;
+        state.shifts.error = action.payload;
       }),
   reducers: {
     clearTickets: (state) => {
       state.tickets.items = [];
     },
+    setSelectedShift: (state, action) => {
+      state.selectedShiftId = action.payload;
+    },
   },
 });
 
+// const shiftsSlice = createSlice({
+//   name: "shifts",
+//   initialState: INITIAL_STATE.shifts,
+//   reducers: {
+//     setSelectedShift(state, action) {
+//       state.selectedShiftId = action.payload;
+//     },
+//   },
+// });
+
 export const ticketsReducer = ticketsSlice.reducer;
 export const { clearTickets } = ticketsSlice.actions;
+
+export const { setSelectedShift } = ticketsSlice.actions;
+// export const shiftsReducer = shiftsSlice.reducer;

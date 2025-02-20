@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import TicketsList from "../../components/TicketList/TicketsList";
 import { useDispatch } from "react-redux";
-import { fetchTickets } from "../../redux/tickets/operations.js";
+import { fetchShifts, fetchTickets } from "../../redux/tickets/operations.js";
 import clsx from "clsx";
 import css from "./MainPage.module.css";
 import { FaPlus } from "react-icons/fa";
 import AddTicketModal from "../../components/AddTicketModal/AddTicketModal.jsx";
+import ShiftList from "../../components/ShiftList/ShiftList.jsx";
 
 const MainPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTickets());
+    // dispatch(fetchTickets());
+    dispatch(fetchShifts());
   }, [dispatch]);
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -21,6 +23,7 @@ const MainPage = () => {
 
   return (
     <div className={clsx(css.wrapper)}>
+      <ShiftList />
       <TicketsList />
       <button
         className={clsx(css.plusButton)}
