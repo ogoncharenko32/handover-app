@@ -36,7 +36,6 @@ export const apiLogoutUser = async () => {
 };
 
 export const apiGetTickets = async (shiftId) => {
-  console.log(shiftId);
   const { data } = await handoverInstance.get("/browse", {
     params: {
       shiftId,
@@ -47,6 +46,10 @@ export const apiGetTickets = async (shiftId) => {
 
 export const apiAddTicket = async (ticket) => {
   const { data } = await handoverInstance.post("/browse", ticket);
+  return data;
+};
+export const apiDeleteTicket = async (ticketId) => {
+  const { data } = await handoverInstance.delete(`/browse/${ticketId}`);
   return data;
 };
 
@@ -62,5 +65,13 @@ export const apiGetShifts = async () => {
 
 export const apiCreateShift = async (date) => {
   const { data } = await handoverInstance.post("/browse/create-shift", date);
+  return data;
+};
+
+export const apiEditTicket = async (ticket) => {
+  const { data } = await handoverInstance.patch(
+    `/browse/${ticket._id}`,
+    ticket
+  );
   return data;
 };

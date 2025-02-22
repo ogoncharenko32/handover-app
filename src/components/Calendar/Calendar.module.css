@@ -1,0 +1,119 @@
+.calendar {
+  width: 320px;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background: var(--prim-color-white);
+}
+
+.modal {
+  border-radius: 10px;
+  position: absolute;
+  /* padding: 32px 12px; */
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--second-background-trecer-color);
+  min-width: 280px;
+}
+
+.customOverlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 1000;
+  overflow: scroll;
+  overscroll-behavior: none;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.calendarHeader button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.dayHeader {
+  font-weight: bold;
+}
+.day {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e7dede;
+  color: #cbc4c4;
+  /* border-radius: 5px; */
+}
+.active {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+.empty {
+  background: none;
+}
+.active:hover {
+  background: #ddd;
+}
+
+.event {
+  background: var(--second-background-trecer-color);
+  color: var(--prim-color-black);
+  font-weight: bold;
+}
+
+.today {
+  border: 2px solid var(--second-warning-color);
+  border-radius: 50%;
+  font-weight: bold;
+  /* background-color: rgba(255, 0, 0, 0.1); */
+}
+
+.shiftListWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shiftList {
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--second-warning-color);
+}
+
+.button {
+  width: 100%;
+  padding: 8px 30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--prim-color-white);
+  border: none;
+  cursor: pointer;
+  background-color: var(--prim-color-blue);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-btn);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover,
+.button:focus {
+  background: #5082f2;
+}

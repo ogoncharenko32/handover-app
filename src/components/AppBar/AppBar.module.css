@@ -6,4 +6,26 @@
   justify-content: space-between;
   padding: 6px 32px;
   align-items: center;
+  margin: 0 auto;
+}
+
+.calendarButton {
+  padding: 2px 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25;
+  color: var(--prim-color-white);
+  border: none;
+  cursor: pointer;
+  background-color: var(--prim-color-blue);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-btn);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 6px 0;
+    width: 768px;
+  }
 }

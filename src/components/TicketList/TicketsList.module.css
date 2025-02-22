@@ -1,8 +1,38 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .ticketsList {
   display: flex;
   flex-direction: column;
   gap: 2px;
   width: 100%;
   margin: 0 auto;
-  padding: 8px 30px;
+  /* padding: 8px 30px; */
 }
+
+.date {
+  display: inline-block;
+  margin-left: auto;
+  color: var(--prim-color-blue);
+}
+
+.emptyArray {
+  display: inline-block;
+  margin: auto;
+  color: var(--prim-color-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 768px;
+  }
+}
+/* @media screen and (min-width: 1440px) {
+  .ticketsList {
+    width: 1440px;
+  }
+} */

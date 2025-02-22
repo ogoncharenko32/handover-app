@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectSelectedShiftId,
+  selectShifts,
   selectTickets,
 } from "../../redux/tickets/selectors.js";
 import Ticket from "../Ticket/Ticket.jsx";
@@ -20,15 +21,25 @@ const TicketsList = () => {
   }, [dispatch, selectedShiftId]);
 
   const tickets = useSelector(selectTickets);
+  const shifts = useSelector(selectShifts);
+
+  const date = new Date(
+    shifts?.find((shift) => shift._id === selectedShiftId)?.date
+  ).toLocaleDateString();
 
   return (
-    <div>
+    <div className={clsx(css.wrapper)}>
+      <p className={clsx(css.date)}>{date}</p>
       <ul className={clsx(css.ticketsList)}>
-        {tickets.map((ticket) => (
-          <li key={ticket._id}>
-            <Ticket data={ticket} />
-          </li>
-        ))}
+        {tickets.length > 0 ? (
+          tickets.map((ticket) => (
+            <li key={ticket._id}>
+              <Ticket data={ticket} />
+            </li>
+          ))
+        ) : (
+          <p className={clsx(css.emptyArray)}>No tickets for this day</p>
+        )}
       </ul>
     </div>
   );
