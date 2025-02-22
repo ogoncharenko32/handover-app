@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addTicket,
   createShift,
+  deleteTicket,
+  editTicket,
   fetchShifts,
   fetchTickets,
 } from "./operations.js";
@@ -51,6 +53,40 @@ export const ticketsSlice = createSlice({
         state.tickets.loading = false;
         state.tickets.error = action.payload;
       })
+      .addCase(deleteTicket.pending, (state) => {
+        state.tickets.loading = true;
+        state.tickets.error = null;
+      })
+      .addCase(deleteTicket.fulfilled, (state, action) => {
+        state.tickets.loading = false;
+        state.tickets.error = null;
+        state.tickets.items = state.tickets.items.filter(
+          (item) => action.payload.ticketId !== item._id
+        );
+        console.log("Ticket removed");
+      })
+      .addCase(deleteTicket.rejected, (state, action) => {
+        state.tickets.loading = false;
+        state.tickets.error = action.payload;
+      })
+      .addCase(editTicket.pending, (state) => {
+        state.tickets.loading = true;
+        state.tickets.error = null;
+      })
+      .addCase(editTicket.fulfilled, (state, action) => {
+        state.tickets.loading = false;
+        state.tickets.error = null;
+
+        const updatedTicket = action.payload;
+        state.tickets.items = state.tickets.items.map((ticket) =>
+          ticket._id === updatedTicket.data._id ? updatedTicket.data : ticket
+        );
+        console.log("Ticket updated");
+      })
+      .addCase(editTicket.rejected, (state, action) => {
+        state.tickets.loading = false;
+        state.tickets.error = action.payload;
+      })
       .addCase(fetchShifts.pending, (state) => {
         state.shifts.loading = true;
         state.shifts.error = null;
@@ -72,6 +108,7 @@ export const ticketsSlice = createSlice({
         state.shifts.loading = false;
         state.shifts.error = null;
         state.shifts.items.push(action.payload.data);
+        state.selectedShiftId = action.payload.data._id;
       })
       .addCase(createShift.rejected, (state, action) => {
         state.shifts.loading = false;

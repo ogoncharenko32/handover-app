@@ -17,13 +17,14 @@
   left: 50%;
   transform: translate(-50%);
   background-color: var(--prim-color-white);
-  min-width: 280px;
+  min-width: 320px;
 }
 
 .modalWrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding: 6px 16px;
 }
 
 .textWrapper {
@@ -66,10 +67,60 @@
   border: none;
 }
 
+.button {
+  width: 100%;
+  padding: 8px 30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--prim-color-white);
+  border: none;
+  cursor: pointer;
+  background-color: var(--prim-color-blue);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-btn);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .addTicketForm {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: 1px solid var(--second-background-trecer-color);
+  border-radius: 6px;
+  color: var(--prim-color-blue);
+  background-color: var(--prim-color-white);
+  outline: none;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.error {
+  border-color: var(--second-del-error-color);
+  color: var(--second-del-error-color);
+  /* position: absolute; */
+  /* top: 75px; */
+}
+
+.checkboxWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  width: 24px;
+  border: none;
 }
 
 .redBtn {
@@ -86,12 +137,15 @@
 }
 
 @media screen and (min-width: 768px) {
-  .customModal {
+  /* .customModal {
     width: 592px;
     height: 208px;
+  } */
+  .modal {
+    min-width: 592px;
   }
 
-  .btn {
+  /* .btn {
     padding: 10px 30px;
     width: 160px;
     height: 44px;
@@ -99,5 +153,5 @@
 
   .btnWrapper {
     flex-direction: row-reverse;
-  }
+  } */
 }

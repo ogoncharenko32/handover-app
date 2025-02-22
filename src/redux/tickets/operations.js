@@ -2,6 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   apiAddTicket,
   apiCreateShift,
+  apiDeleteTicket,
+  apiEditTicket,
   apiGetShifts,
   apiGetTickets,
   setToken,
@@ -56,11 +58,36 @@ export const addTicket = createAsyncThunk(
     }
   }
 );
+
+export const deleteTicket = createAsyncThunk(
+  "tickets/deleteTicket",
+  async (ticketId, thunkApi) => {
+    try {
+      const data = await apiDeleteTicket(ticketId);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const createShift = createAsyncThunk(
   "tickets/createShift",
-  async (date, thunkApi) => {
+  async (payload, thunkApi) => {
     try {
-      const data = await apiCreateShift(date);
+      const data = await apiCreateShift(payload);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editTicket = createAsyncThunk(
+  "tickets/editTicket",
+  async (ticket, thunkApi) => {
+    try {
+      const data = await apiEditTicket(ticket);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

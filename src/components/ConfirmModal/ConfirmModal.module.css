@@ -1,0 +1,65 @@
+.customOverlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 1000;
+  overflow: scroll;
+  overscroll-behavior: none;
+}
+
+.modal {
+  border-radius: 10px;
+  position: absolute;
+  padding: 32px 12px;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--prim-color-white);
+  min-width: 320px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 6px 16px;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.button {
+  width: 120px;
+  padding: 8px 30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--prim-color-white);
+  border: none;
+  cursor: pointer;
+  background-color: var(--prim-color-blue);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-btn);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.redButton {
+  background-color: var(--second-del-error-color);
+}
+
+.button:hover,
+.button:focus {
+  background: #5082f2;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 6px 32px;
+  }
+}
