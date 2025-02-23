@@ -89,7 +89,13 @@ const AddTicketModal = ({ isOpen, onClose, mode, data, ticketId }) => {
         }) => (
           <Form className={clsx(css.addTicketForm)}>
             <label htmlFor="status">Status of ticket</label>
-            <Field className={css.input} id="status" as="select" name="status">
+            <Field
+              className={css.input}
+              id="status"
+              as="select"
+              name="status"
+              autoFocus={true}
+            >
               {ticketStatus.map((option) => (
                 <option key={option} value={option}>
                   {option}
