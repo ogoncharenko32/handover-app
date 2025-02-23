@@ -1,7 +1,14 @@
 .wrapper {
   width: 100%;
   margin: 0 auto;
-  padding: 8px 30px;
+  /* padding: 8px 30px; */
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 8px 30px;
+    width: 768px;
+  }
 }

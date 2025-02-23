@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 // import css from "./AuthNav.module.css";
 import clsx from "clsx";
 import css from "./AuthNav.module.css";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 const AuthNav = () => {
   const buildCssClasses = ({ isActive }) =>
@@ -10,10 +12,12 @@ const AuthNav = () => {
   return (
     <div className={clsx(css.wrapper)}>
       <NavLink className={buildCssClasses} to="/signup">
-        SignUp
+        Register
+        <AppRegistrationIcon />
       </NavLink>
       <NavLink className={buildCssClasses} to="/signin">
-        SignIn
+        Login
+        <LoginIcon />
       </NavLink>
     </div>
   );

@@ -4,7 +4,7 @@
   color: var(--prim-color-blue);
   display: flex;
   justify-content: space-between;
-  padding: 6px 32px;
+  /* padding: 6px 32px; */
   align-items: center;
   margin: 0 auto;
 }
@@ -23,9 +23,19 @@
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.icon {
+  width: 26px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 6px 32px;
+    /* width: 768px; */
+  }
+}
 @media screen and (min-width: 1440px) {
   .wrapper {
-    padding: 6px 0;
+    /* padding: 6px 0; */
     width: 768px;
   }
 }

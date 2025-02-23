@@ -9,6 +9,7 @@ import css from "./AppBar.module.css";
 import { selectShifts } from "../../redux/tickets/selectors";
 import Calendar from "../Calendar/Calendar";
 import { FaCalendarAlt } from "react-icons/fa";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -29,7 +30,12 @@ const AppBar = () => {
           onClick={() => openCalendarModal()}
           type="button"
         >
-          {<FaCalendarAlt size={26} />}
+          {
+            <CalendarMonthIcon
+              sx={{ fontSize: 26 }}
+              className={clsx(css.icon)}
+            />
+          }
         </button>
       )}
       <Calendar

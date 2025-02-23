@@ -11,6 +11,7 @@ import AddTicketModal from "../AddTicketModal/AddTicketModal";
 import { Switch } from "@mui/material";
 import { PiExclamationMarkFill } from "react-icons/pi";
 import DetailsModal from "../DetailsModal/DetailsModal";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const Ticket = ({ data }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Ticket = ({ data }) => {
     if (link.includes("jira")) {
       return link.slice(link.lastIndexOf("/") + 1);
     } else if (link.includes("lightning.force")) {
-      return `SFDC link`;
+      return `SFDC`;
     } else {
       return link;
     }
@@ -45,11 +46,11 @@ const Ticket = ({ data }) => {
   return (
     <div className={clsx(css.wrapper)}>
       <Link className={clsx(css.link)} to={data.link} target="_blank">
-        <FaExternalLinkAlt />
+        <OpenInNewIcon sx={{ fontSize: 16 }} />
       </Link>
-      <p>{ticketName(data.link)}</p>
-      <p className={clsx(css.description)}>{data.description}</p>
-      <p className={clsx(css.status)}>{data.status}</p>
+      <p className={clsx(css.ticketName)}>{ticketName(data.link)}</p>
+      <p className={clsx(css.description)}> - {data.description}</p>
+      <p className={clsx(css.status)}> - {data.status}</p>
       <div className={clsx(css.detailsWrapper)}>
         {data.isImportant === true && (
           <PiExclamationMarkFill className={clsx(css.checkbox)} />

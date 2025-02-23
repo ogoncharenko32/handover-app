@@ -101,6 +101,10 @@
   transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.input:focus {
+  border: 1px solid var(--prim-color-blue);
+}
+
 .textarea {
   resize: vertical;
 }
@@ -113,13 +117,14 @@
 }
 
 .checkboxWrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .checkbox {
-  width: 24px;
+  width: 58px;
   border: none;
 }
 

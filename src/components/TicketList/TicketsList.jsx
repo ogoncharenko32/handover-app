@@ -9,6 +9,7 @@ import Ticket from "../Ticket/Ticket.jsx";
 import clsx from "clsx";
 import css from "./TicketsList.module.css";
 import { fetchTickets } from "../../redux/tickets/operations.js";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const TicketsList = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,13 @@ const TicketsList = () => {
 
   return (
     <div className={clsx(css.wrapper)}>
-      <p className={clsx(css.date)}>{date}</p>
+      <div className={clsx(css.summary)}>
+        {tickets.length > 0 && (
+          <p className={clsx(css.date)}>Total: {tickets.length}</p>
+        )}
+        <p className={clsx(css.date)}>{date}</p>
+      </div>
+
       <ul className={clsx(css.ticketsList)}>
         {tickets.length > 0 ? (
           tickets.map((ticket) => (

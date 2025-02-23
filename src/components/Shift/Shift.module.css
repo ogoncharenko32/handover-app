@@ -23,3 +23,7 @@
 .button:focus {
   background: #5082f2;
 }
+
+.selectedShift {
+  border: 2px solid var(--second-warning-color);
+}

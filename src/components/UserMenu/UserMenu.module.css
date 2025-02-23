@@ -1,9 +1,11 @@
 .wrapper {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
 .greating {
+  font-size: 16px;
 }
 
 .button {
