@@ -1,28 +1,46 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .greating {
-  font-size: 16px;
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 .button {
-  padding: 2px 8px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.25;
-  color: var(--prim-color-white);
-  border: none;
-  cursor: pointer;
-  background-color: var(--prim-color-blue);
-  border-radius: 10px;
-  box-shadow: var(--box-shadow-btn);
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--second-blue-color);
+    /*border: none;*/
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 10px;
+    /*box-shadow: var(--box-shadow-btn);*/
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
 .button:focus {
-  background: #5082f2;
+    color: var(--prim-color-blue);
+}
+
+.btntext {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .btntext {
+        display: block;
+    }
 }
