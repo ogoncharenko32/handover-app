@@ -60,16 +60,19 @@ const Calendar = ({isOpen, onClose, shiftList}) => {
     const today = getLocalISOString().split("T")[0]; // Формат 'YYYY-MM-DD'
 
     const isTodayDay = (day) => {
+        console.log(today)
         return formatDate(year, month, day) === today;
     };
 
     const getEventsForDate = (day) => {
         const dateString = formatDate(year, month, day);
+        console.log(shiftList)
         const result = shiftList.filter(
             (shift) => shift.date.slice(0, 10) === dateString
         );
         setFilteredShifts(result);
         setSelectedDate(formatDate(year, month, day));
+        console.log(selectedDate)
     };
 
     const handleCreateNewShift = () => {
@@ -82,6 +85,7 @@ const Calendar = ({isOpen, onClose, shiftList}) => {
     useEffect(() => {
         const date = new Date();
         setSelectedDate(formatDate(year, month, date.getDate()));
+        console.log(selectedDate);
         getEventsForDate(date.getDate());
     }, [shifts]);
 
