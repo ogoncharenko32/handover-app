@@ -1,27 +1,27 @@
 .wrapper {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .link {
-  padding: 2px 8px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.25;
-  color: var(--prim-color-white);
-  border: none;
-  cursor: pointer;
-  background-color: var(--prim-color-blue);
-  border-radius: 10px;
-  box-shadow: var(--box-shadow-btn);
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2px 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--second-blue-color);
+    border: none;
+    cursor: pointer;
+    /*background-color: var(--prim-color-blue);*/
+    border-radius: 10px;
+    /*box-shadow: var(--box-shadow-btn);*/
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link:hover,
 .link:focus {
-  background: #5082f2;
+    color: var(--second-warning-color);
 }
 
 .active {
-  color: var(--second-background-trecer-color);
+    color: var(--prim-color-blue);
 }
