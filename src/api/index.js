@@ -3,12 +3,22 @@ import axios from "axios";
 const handoverInstance = axios.create({
     // baseURL: 'https://66c14861f83fffcb58790652.mockapi.io/',
     // baseURL: "https://connections-api.goit.global/",
-    // baseURL: "http://localhost:3000/",
+    baseURL: "http://localhost:3000/",
     // baseURL: "https://handover-api.onrender.com/",
-	baseURL: "http://159.224.183.45:3000",
+    // baseURL: "http://159.224.183.45:3000",
     // baseURL: 'http://192.168.100.124:3000',
     withCredentials: true,
 });
+
+handoverInstance.interceptors.response.use((response) => {
+    return response;
+}, (error) => {
+    if (error.response.status === 401) {
+
+        return window.location.href = '/signin'
+    }
+    console.log(error);
+})
 
 export const setToken = (token) => {
     handoverInstance.defaults.headers.common.Authorization = `Bearer ${token}`;

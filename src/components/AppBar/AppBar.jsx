@@ -22,10 +22,10 @@ const AppBar = () => {
     const openCalendarModal = () => setCalendarIsOpen(true);
     const closeCalendarModal = () => setCalendarIsOpen(false);
 
-    useEffect(() => {
-        // dispatch(fetchTickets());
-        dispatch(fetchShifts());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     // dispatch(fetchTickets());
+    //     dispatch(fetchShifts());
+    // }, [dispatch]);
 
     const shiftList = useSelector(selectShifts);
     console.log(shiftList);
